@@ -1,0 +1,16 @@
+name: ext
+description: Common methods.
+version: 1.0.0
+
+environment:
+  sdk: ^2.12.0-0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
