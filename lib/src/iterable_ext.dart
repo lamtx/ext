@@ -42,30 +42,23 @@ extension IterableExt<T> on Iterable<T> {
   }
 
   T? firstOrNull([bool Function(T e)? predicate]) {
+    if (isEmpty) {
+      return null;
+    }
     if (predicate == null) {
-      return isEmpty ? null : first;
+      return first;
     }
-    for (final e in this) {
-      if (predicate(e)) {
-        return e;
-      }
-    }
-    return null;
+    return firstWhere(predicate);
   }
 
   T? lastOrNull([bool Function(T e)? predicate]) {
+    if (isEmpty) {
+      return null;
+    }
     if (predicate == null) {
-      return isEmpty ? null : last;
+      return last;
     }
-    late T result;
-    var foundMatching = false;
-    for (final e in this) {
-      if (predicate(e)) {
-        result = e;
-        foundMatching = true;
-      }
-    }
-    return foundMatching ? result : null;
+    return lastWhere(predicate);
   }
 
   Map<K, V> associate<K, V>(Pair<K, V> Function(T e) transform) {
