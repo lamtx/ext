@@ -22,6 +22,6 @@ bool log(String tagOrMessage, [String? message, Object? exception]) {
   return true;
 }
 
-Never error(String message) {
-  throw StateError(message);
-}
+Never error(String message) => throw StateError(message);
+
+Type typeOf<T>() => T;
