@@ -38,7 +38,7 @@ extension StringExt on String {
 
   String get nameWithoutExtension => substringBeforeLast(".");
 
-  String removeAll(List<int> characters) {
+  String removeAll(Iterable<int> characters) {
     final sb = StringBuffer();
     for (var i = 0; i < length; i++) {
       final char = codeUnitAt(i);
