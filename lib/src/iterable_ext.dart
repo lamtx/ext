@@ -126,6 +126,10 @@ extension IterableExt<T> on Iterable<T> {
     return result;
   }
 
+  List<R> mapToList<R>(R Function(T) transform) {
+    return map(transform).toList();
+  }
+
   String joinToString([
     String? separator = ", ",
     String Function(T e)? transform,
