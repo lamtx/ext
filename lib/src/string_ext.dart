@@ -1,7 +1,6 @@
 import 'predicate.dart';
 
 extension NullableStringExt on String? {
-
   String ifEmpty(String Function() other) {
     if (this != null && isNotEmpty) {
       return this;
@@ -13,6 +12,8 @@ extension NullableStringExt on String? {
 }
 
 extension StringExt on String {
+  String? takeNotEmpty() => isEmpty ? null : this;
+
   int? toIntOrNull() => int.tryParse(this);
 
   String substringBeforeLast(String delimiter,
