@@ -130,6 +130,9 @@ extension IterableExt<T> on Iterable<T> {
     return map(transform).toList();
   }
 
+  Iterable<T> whereIf(bool value, Predicate<T> predicate) =>
+      value ? where(predicate) : this;
+
   String joinToString([
     String? separator = ", ",
     String Function(T e)? transform,
