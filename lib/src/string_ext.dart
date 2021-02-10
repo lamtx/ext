@@ -2,8 +2,8 @@ import 'predicate.dart';
 
 extension NullableStringExt on String? {
   String ifEmpty(String Function() other) {
-    if (this != null && isNotEmpty) {
-      return this;
+    if (this != null && this!.isNotEmpty) {
+      return this!;
     }
     return other();
   }

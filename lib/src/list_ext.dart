@@ -2,8 +2,8 @@ import 'predicate.dart';
 
 extension NullableListExt<T> on List<T>? {
   List<T> ifEmpty(List<T> Function() other) {
-    if (this != null && isNotEmpty) {
-      return this;
+    if (this != null && this!.isNotEmpty) {
+      return this!;
     }
     return other();
   }
