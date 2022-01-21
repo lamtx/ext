@@ -60,4 +60,12 @@ extension DateTimeExt on DateTime {
     }
     return DateTime(year, month, day + daysBetween);
   }
+
+  bool operator <=(DateTime other) => compareTo(other) <= 0;
+
+  bool operator <(DateTime other) => compareTo(other) < 0;
+
+  bool operator >(DateTime other) => compareTo(other) > 0;
+
+  bool operator >=(DateTime other) => compareTo(other) >= 0;
 }
