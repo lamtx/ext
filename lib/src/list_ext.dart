@@ -28,6 +28,18 @@ extension ListExt<T> on List<T> {
     return index != -1;
   }
 
+  bool updateAll(Predicate<T> where, T Function(T) transform) {
+    var changed = false;
+    for (var i = 0; i < length; i++) {
+      final element = this[i];
+      if (where(element)) {
+        changed = true;
+        this[i] = transform(element);
+      }
+    }
+    return changed;
+  }
+
   bool removeFirst(Predicate<T> where) {
     final index = indexWhere(where);
     if (index != -1) {
