@@ -77,6 +77,14 @@ extension IterableExt<T> on Iterable<T> {
     return result;
   }
 
+  Map<K, T> associateBy<K>(K Function(T e) selector) {
+    final result = <K, T>{};
+    for (final e in this) {
+      result[selector(e)] = e;
+    }
+    return result;
+  }
+
   List<R> flatten<R>(List<R> Function(T element) transform) {
     final result = <R>[];
     for (final element in this) {
