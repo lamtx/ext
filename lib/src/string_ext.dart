@@ -50,6 +50,17 @@ extension StringExt on String {
     return sb.toString();
   }
 
+  String removeChar(int character) {
+    final sb = StringBuffer();
+    for (var i = 0; i < length; i++) {
+      final char = codeUnitAt(i);
+      if (char != character) {
+        sb.writeCharCode(char);
+      }
+    }
+    return sb.toString();
+  }
+
   bool all(Predicate<int> predicate) {
     for (var i = 0; i < length; i++) {
       if (!predicate(codeUnitAt(i))) {
