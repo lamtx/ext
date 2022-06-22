@@ -1,7 +1,8 @@
 library ext;
 
+export 'src/brightness_ext.dart';
 export 'src/color_ext.dart';
-export 'src/comparision.dart';
+export 'src/comparison.dart';
 export 'src/core.dart';
 export 'src/date_time_ext.dart';
 export 'src/duration_ext.dart';
