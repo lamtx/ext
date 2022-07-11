@@ -1,6 +1,7 @@
 library ext;
 
 export 'src/brightness_ext.dart';
+export 'src/coerce_comparator.dart';
 export 'src/color_ext.dart';
 export 'src/comparison.dart';
 export 'src/core.dart';

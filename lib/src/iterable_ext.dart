@@ -179,7 +179,7 @@ extension IterableExt<T> on Iterable<T> {
       return null;
     }
     var value = selector(first);
-    T? element;
+    T? element = first;
     for (final e in this) {
       final tmp = selector(e);
       if (tmp.compareTo(value) > 0) {
