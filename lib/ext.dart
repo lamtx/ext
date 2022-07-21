@@ -1,13 +1,8 @@
-library ext;
-
-export 'src/brightness_ext.dart';
 export 'src/coerce_comparator.dart';
-export 'src/color_ext.dart';
 export 'src/comparison.dart';
 export 'src/core.dart';
 export 'src/date_time_ext.dart';
 export 'src/duration_ext.dart';
-export 'src/edge_insets_ext.dart';
 export 'src/enum_set.dart';
 export 'src/file_system_entity_ext.dart';
 export 'src/indexed_iterable/indexed_iterable.dart';
@@ -19,7 +14,6 @@ export 'src/iterable_ext.dart';
 export 'src/lazy.dart';
 export 'src/linked_list.dart';
 export 'src/list_ext.dart';
-export 'src/navigator_ext.dart';
 export 'src/nested_exception.dart';
 export 'src/pair.dart';
 export 'src/predicate.dart';

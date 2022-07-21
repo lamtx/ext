@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 class Pair<T, S> {
   const Pair(this.first, this.second);
 
@@ -8,8 +6,9 @@ class Pair<T, S> {
 
   @override
   bool operator ==(Object other) =>
-      other is Pair<T, S> && other.first == first && other.second == second;
+      identical(this, other) ||
+      other is Pair && first == other.first && second == other.second;
 
   @override
-  int get hashCode => hashValues(first, second);
+  int get hashCode => first.hashCode ^ second.hashCode;
 }

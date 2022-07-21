@@ -49,6 +49,7 @@ class LinkedList<E> with IterableMixin<E> implements Iterable<E> {
   String toString() {
     return IterableBase.iterableToFullString(this);
   }
+
   @override
   Iterator<E> get iterator => _LinkedListIterator(_front);
 
@@ -66,12 +67,12 @@ class LinkedList<E> with IterableMixin<E> implements Iterable<E> {
 
   void add(E value) {
     if (isEmpty) {
-      final entry = LinkedListEntry._(value, prev: null, next: null);
+      final entry = LinkedListEntry._(value);
       _front = entry;
       _rear = entry;
       _length = 1;
     } else {
-      final entry = LinkedListEntry._(value, prev: _rear, next: null);
+      final entry = LinkedListEntry._(value, prev: _rear);
       _rear!._next = entry;
       _rear = entry;
       _length += 1;
@@ -80,12 +81,12 @@ class LinkedList<E> with IterableMixin<E> implements Iterable<E> {
 
   void addFirst(E value) {
     if (isEmpty) {
-      final entry = LinkedListEntry._(value, prev: null, next: null);
+      final entry = LinkedListEntry._(value);
       _front = entry;
       _rear = entry;
       _length = 1;
     } else {
-      final entry = LinkedListEntry._(value, prev: null, next: _front);
+      final entry = LinkedListEntry._(value, next: _front);
       _front!._prev = entry;
       _front = entry;
       _length += 1;

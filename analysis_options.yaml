@@ -1,4 +1,4 @@
-  # Specify analysis options.
+# Specify analysis options.
 #
 # Until there are meta linter rules, each desired lint must be explicitly enabled.
 # See: https://github.com/dart-lang/linter/issues/288
@@ -50,17 +50,17 @@ linter:
     - always_put_control_body_on_new_line
     # - always_put_required_named_parameters_first # we prefer having parameters in the same order as fields https://github.com/flutter/flutter/issues/10219
     - always_require_non_null_named_parameters
-#    - always_specify_types
+    #    - always_specify_types
     - annotate_overrides
     # - avoid_annotating_with_dynamic # conflicts with always_specify_types
     # - avoid_as # required for implicit-casts: true
     - avoid_bool_literals_in_conditional_expressions
     # - avoid_catches_without_on_clauses # we do this commonly
     # - avoid_catching_errors # we do this commonly
-#    - avoid_classes_with_only_static_members #incorrect
+    #    - avoid_classes_with_only_static_members #incorrect
     # - avoid_double_and_int_checks # only useful when targeting JS runtime
     - avoid_empty_else
-#    - avoid_equals_and_hash_code_on_mutable_classes
+    #    - avoid_equals_and_hash_code_on_mutable_classes
     - avoid_field_initializers_in_const_classes
     - avoid_function_literals_in_foreach_calls
     - avoid_implementing_value_types
@@ -86,7 +86,7 @@ linter:
     - avoid_types_on_closure_parameters # conflicts with always_specify_types
     - avoid_unnecessary_containers
     - avoid_unused_constructor_parameters
-#    - avoid_void_async
+    #    - avoid_void_async
     - avoid_web_libraries_in_flutter
     - await_only_futures
     - camel_case_extensions
@@ -104,17 +104,16 @@ linter:
     - empty_constructor_bodies
     - empty_statements
     - file_names
-#    - flutter_style_todos # We don't follow that style
-#    - hash_and_equals # I've never seen that makes sense
+    #    - flutter_style_todos # We don't follow that style
+    #    - hash_and_equals # I've never seen that makes sense
     - implementation_imports
-    - invariant_booleans # too many false positives: https://github.com/dart-lang/linter/issues/811
     - iterable_contains_unrelated_type
     - join_return_with_assignment
     - library_names
     - library_prefixes
-#    - lines_longer_than_80_chars # dartfmt does it
+    #    - lines_longer_than_80_chars # dartfmt does it
     - list_remove_unrelated_type
-#    - literal_only_boolean_expressions # too many false positives: https://github.com/dart-lang/sdk/issues/34181
+    #    - literal_only_boolean_expressions # too many false positives: https://github.com/dart-lang/sdk/issues/34181
     - missing_whitespace_between_adjacent_strings
     - no_adjacent_strings_in_list
     - no_duplicate_case_values
@@ -123,7 +122,7 @@ linter:
     - non_constant_identifier_names
     - null_closures  # not yet tested
     - omit_local_variable_types # opposite of always_specify_types
-#     - one_member_abstracts # too many false positives
+    #     - one_member_abstracts # too many false positives
     - only_throw_errors # https://github.com/flutter/flutter/issues/5792
     - overridden_fields
     - package_api_docs
@@ -164,7 +163,7 @@ linter:
     # - prefer_mixin # https://github.com/dart-lang/language/issues/32
     # - prefer_null_aware_operators # disable until NNBD, see https://github.com/flutter/flutter/pull/32711#issuecomment-492930932
     - prefer_relative_imports
-#    - prefer_single_quotes
+    #    - prefer_single_quotes
     - prefer_spread_collections
     - prefer_typing_uninitialized_variables
     - prefer_void_to_null
