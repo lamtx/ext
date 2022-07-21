@@ -4,7 +4,4 @@ publish_to: 'none'
 version: 1.0.0
 
 environment:
-  sdk: ^2.12.0-0
-
-flutter:
-  test: any
+  sdk: ^2.17.0
