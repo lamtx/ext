@@ -2,7 +2,6 @@ export 'src/coerce_comparator.dart';
 export 'src/comparison.dart';
 export 'src/core.dart';
 export 'src/date_time_ext.dart';
-export 'src/disposable.dart';
 export 'src/duration_ext.dart';
 export 'src/enum_set.dart';
 export 'src/file_system_entity_ext.dart';
