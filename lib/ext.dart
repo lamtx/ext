@@ -15,7 +15,6 @@ export 'src/lazy.dart';
 export 'src/linked_list.dart';
 export 'src/list_ext.dart';
 export 'src/nested_exception.dart';
-export 'src/pair.dart';
 export 'src/predicate.dart';
 export 'src/string_ext.dart';
 export 'src/vietnamese.dart';

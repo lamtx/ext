@@ -103,7 +103,7 @@ class EnumSet<T> with SetMixin<T> implements Set<T> {
 }
 
 // Testing purpose only, unoptimized
-class _EnumSetIterator<T> extends Iterator<T> {
+class _EnumSetIterator<T> implements Iterator<T> {
   _EnumSetIterator(this.source);
 
   final EnumSet<T> source;

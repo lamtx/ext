@@ -1,4 +1,3 @@
-import 'pair.dart';
 import 'predicate.dart';
 
 extension IterableExt<T> on Iterable<T> {
@@ -68,11 +67,11 @@ extension IterableExt<T> on Iterable<T> {
     return foundMatching ? result : null;
   }
 
-  Map<K, V> associate<K, V>(Pair<K, V> Function(T e) transform) {
+  Map<K, V> associate<K, V>((K, V) Function(T e) transform) {
     final result = <K, V>{};
     for (final e in this) {
       final r = transform(e);
-      result[r.first] = r.second;
+      result[r.$1] = r.$2;
     }
     return result;
   }

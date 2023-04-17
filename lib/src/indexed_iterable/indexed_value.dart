@@ -1,6 +1,1 @@
-class IndexedValue<T> {
-  const IndexedValue(this.index, this.value);
-
-  final int index;
-  final T value;
-}
+typedef IndexedValue<T> = (int index, T value);

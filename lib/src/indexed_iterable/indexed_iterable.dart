@@ -9,7 +9,7 @@ class IndexedIterable<T> extends Iterable<IndexedValue<T>> {
   Iterator<IndexedValue<T>> get iterator => _IndexedIterator(items.iterator);
 }
 
-class _IndexedIterator<T> extends Iterator<IndexedValue<T>> {
+class _IndexedIterator<T> implements Iterator<IndexedValue<T>> {
   _IndexedIterator(this.iterator);
 
   final Iterator<T> iterator;
@@ -17,7 +17,7 @@ class _IndexedIterator<T> extends Iterator<IndexedValue<T>> {
 
   @override
   IndexedValue<T> get current {
-    return IndexedValue(_index, iterator.current);
+    return (_index, iterator.current);
   }
 
   @override

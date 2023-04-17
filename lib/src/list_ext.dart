@@ -86,7 +86,7 @@ class _IntRange extends Iterable<int> {
   Iterator<int> get iterator => _IntRangeIterator(start, end);
 }
 
-class _IntRangeIterator extends Iterator<int> {
+class _IntRangeIterator implements Iterator<int> {
   _IntRangeIterator(this.start, this.end) : _value = start - 1;
 
   final int start;
