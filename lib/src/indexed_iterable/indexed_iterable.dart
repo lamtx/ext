@@ -17,7 +17,7 @@ class _IndexedIterator<T> implements Iterator<IndexedValue<T>> {
 
   @override
   IndexedValue<T> get current {
-    return (_index, iterator.current);
+    return (index: _index, value: iterator.current);
   }
 
   @override

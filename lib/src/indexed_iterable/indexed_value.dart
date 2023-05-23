@@ -1,1 +1,1 @@
-typedef IndexedValue<T> = (int index, T value);
+typedef IndexedValue<T> = ({int index, T value});
