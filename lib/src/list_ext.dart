@@ -10,17 +10,17 @@ extension NullableListExt<T> on List<T>? {
 }
 
 extension ListExt<T> on List<T> {
-  void sortBy<R extends Comparable<R>>(R Function(T) key) {
+  void sortBy<R extends Comparable<R>>(R Function(T e) key) {
     sort((a, b) => key(a).compareTo(key(b)));
   }
 
-  void sortDescBy<R extends Comparable<R>>(R Function(T) key) {
+  void sortDescBy<R extends Comparable<R>>(R Function(T e) key) {
     sort((a, b) => -key(a).compareTo(key(b)));
   }
 
   Iterable<int> get indices => _IntRange(0, length - 1);
 
-  bool updateFirst(Predicate<T> where, T Function(T) transform) {
+  bool updateFirst(Predicate<T> where, T Function(T e) transform) {
     final index = indexWhere(where);
     if (index != -1) {
       this[index] = transform(this[index]);
@@ -28,7 +28,7 @@ extension ListExt<T> on List<T> {
     return index != -1;
   }
 
-  bool updateAll(Predicate<T> where, T Function(T) transform) {
+  bool updateAll(Predicate<T> where, T Function(T e) transform) {
     var changed = false;
     for (var i = 0; i < length; i++) {
       final element = this[i];
@@ -48,7 +48,7 @@ extension ListExt<T> on List<T> {
     return index != -1;
   }
 
-  void replaceAll(T Function(T) transform) {
+  void replaceAll(T Function(T e) transform) {
     for (var i = 0; i < length; i++) {
       this[i] = transform(this[i]);
     }

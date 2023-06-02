@@ -1,4 +1,4 @@
-typedef CompareSelector<T> = Comparable<Object>? Function(T);
+typedef CompareSelector<T> = Comparable<Object>? Function(T e);
 
 Comparator<T> compareBy<T>(CompareSelector<T> selector,
     [CompareSelector<T>? thenBySelector]) {
@@ -41,7 +41,7 @@ int _compare(Comparable<Object?>? a, Comparable<Object?>? b) {
 }
 
 extension ComparatorExt<T> on Comparator<T> {
-  Comparator<T> thenBy(Comparable<void> Function(T) selector) {
+  Comparator<T> thenBy(Comparable<void> Function(T e) selector) {
     return (a, b) {
       final previous = this.call(a, b);
       return previous == 0 ? _compare(selector(a), selector(b)) : previous;

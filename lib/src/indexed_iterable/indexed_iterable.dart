@@ -1,6 +1,6 @@
 import 'indexed_value.dart';
 
-class IndexedIterable<T> extends Iterable<IndexedValue<T>> {
+final class IndexedIterable<T> extends Iterable<IndexedValue<T>> {
   const IndexedIterable(this.items);
 
   final Iterable<T> items;

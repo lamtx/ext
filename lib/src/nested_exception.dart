@@ -1,4 +1,4 @@
-class NestedException implements Exception {
+final class NestedException implements Exception {
   const NestedException(this.cause);
 
   final Object cause;

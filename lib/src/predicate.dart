@@ -1,1 +1,1 @@
-typedef Predicate<T> = bool Function(T element);
+typedef Predicate<T> = bool Function(T e);

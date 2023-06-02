@@ -1,7 +1,7 @@
 import 'predicate.dart';
 
-extension IterableExt<T> on Iterable<T> {
-  double sumByDouble(double Function(T) transform) {
+extension IterableExt<E> on Iterable<E> {
+  double sumOfDouble(double Function(E e) transform) {
     var value = 0.0;
     for (final item in this) {
       value += transform(item);
@@ -9,7 +9,7 @@ extension IterableExt<T> on Iterable<T> {
     return value;
   }
 
-  int sumByInt(int Function(T e) transform) {
+  int sumOfInt(int Function(E e) transform) {
     var value = 0;
     for (final item in this) {
       value += transform(item);
@@ -17,21 +17,34 @@ extension IterableExt<T> on Iterable<T> {
     return value;
   }
 
-  int countBy(bool Function(T e) predicate) {
-    var count = 0;
-    for (final e in this) {
-      if (predicate(e)) {
-        count += 1;
+  int count([bool Function(E e)? predicate]) {
+    if (predicate == null) {
+      if (this is List) {
+        return length;
+      } else {
+        var count = 0;
+        final iterator = this.iterator;
+        while (iterator.moveNext()) {
+          count += 1;
+        }
+        return count;
       }
+    } else {
+      var count = 0;
+      for (final e in this) {
+        if (predicate(e)) {
+          count += 1;
+        }
+      }
+      return count;
     }
-    return count;
   }
 
-  List<T> added(T newItem) {
+  List<E> added(E newItem) {
     if (isEmpty) {
       return [newItem];
     }
-    final list = List<T>.filled(length + 1, first);
+    final list = List<E>.filled(length + 1, first);
     var i = 0;
     for (final e in this) {
       list[i++] = e;
@@ -40,7 +53,7 @@ extension IterableExt<T> on Iterable<T> {
     return list;
   }
 
-  T? firstOrNull([bool Function(T e)? predicate]) {
+  E? firstOrNull([bool Function(E e)? predicate]) {
     if (predicate == null) {
       return isEmpty ? null : first;
     }
@@ -52,11 +65,11 @@ extension IterableExt<T> on Iterable<T> {
     return null;
   }
 
-  T? lastOrNull([bool Function(T e)? predicate]) {
+  E? lastOrNull([bool Function(E e)? predicate]) {
     if (predicate == null) {
       return isEmpty ? null : last;
     }
-    late T result;
+    late E result;
     var foundMatching = false;
     for (final e in this) {
       if (predicate(e)) {
@@ -67,7 +80,7 @@ extension IterableExt<T> on Iterable<T> {
     return foundMatching ? result : null;
   }
 
-  Map<K, V> associate<K, V>((K, V) Function(T e) transform) {
+  Map<K, V> associate<K, V>((K, V) Function(E e) transform) {
     final result = <K, V>{};
     for (final e in this) {
       final r = transform(e);
@@ -76,15 +89,15 @@ extension IterableExt<T> on Iterable<T> {
     return result;
   }
 
-  Map<K, T> associateBy<K>(K Function(T e) selector) {
-    final result = <K, T>{};
+  Map<K, E> associateBy<K>(K Function(E e) selector) {
+    final result = <K, E>{};
     for (final e in this) {
       result[selector(e)] = e;
     }
     return result;
   }
 
-  List<R> flatten<R>(List<R> Function(T element) transform) {
+  List<R> flatten<R>(List<R> Function(E element) transform) {
     final result = <R>[];
     for (final element in this) {
       result.addAll(transform(element));
@@ -92,7 +105,7 @@ extension IterableExt<T> on Iterable<T> {
     return result;
   }
 
-  List<R> mapNotNull<R>(R? Function(T e) transform) {
+  List<R> mapNotNull<R>(R? Function(E e) transform) {
     final result = <R>[];
     for (final e in this) {
       final t = transform(e);
@@ -113,8 +126,8 @@ extension IterableExt<T> on Iterable<T> {
     return result;
   }
 
-  List<T> filter(Predicate<T> predicate) {
-    final result = <T>[];
+  List<E> filter(Predicate<E> predicate) {
+    final result = <E>[];
     for (final e in this) {
       if (predicate(e)) {
         result.add(e);
@@ -123,8 +136,8 @@ extension IterableExt<T> on Iterable<T> {
     return result;
   }
 
-  List<T> filterNot(Predicate<T> predicate) {
-    final result = <T>[];
+  List<E> filterNot(Predicate<E> predicate) {
+    final result = <E>[];
     for (final e in this) {
       if (!predicate(e)) {
         result.add(e);
@@ -133,16 +146,16 @@ extension IterableExt<T> on Iterable<T> {
     return result;
   }
 
-  List<R> mapToList<R>(R Function(T) transform) {
+  List<R> mapToList<R>(R Function(E e) transform) {
     return map(transform).toList();
   }
 
-  Iterable<T> whereIf(bool value, Predicate<T> predicate) =>
+  Iterable<E> whereIf(bool value, Predicate<E> predicate) =>
       value ? where(predicate) : this;
 
   String joinToString([
     String? separator = ", ",
-    String Function(T e)? transform,
+    String Function(E e)? transform,
   ]) {
     final iterator = this.iterator;
     transform ??= (e) => e.toString();
@@ -164,8 +177,8 @@ extension IterableExt<T> on Iterable<T> {
     return buffer.toString();
   }
 
-  Map<R, List<T>> groupBy<R>(R Function(T element) key) {
-    final map = <R, List<T>>{};
+  Map<R, List<E>> groupBy<R>(R Function(E e) key) {
+    final map = <R, List<E>>{};
     for (final element in this) {
       final list = map.putIfAbsent(key(element), () => []);
       list.add(element);
@@ -173,12 +186,12 @@ extension IterableExt<T> on Iterable<T> {
     return map;
   }
 
-  T? maxBy<R extends Comparable<R>>(R Function(T element) selector) {
+  E? maxBy<R extends Comparable<R>>(R Function(E e) selector) {
     if (isEmpty) {
       return null;
     }
     var value = selector(first);
-    T? element = first;
+    E? element = first;
     for (final e in this) {
       final tmp = selector(e);
       if (tmp.compareTo(value) > 0) {

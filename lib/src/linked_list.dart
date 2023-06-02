@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+@Deprecated("Use [Queue]")
 class LinkedListEntry<E> {
   LinkedListEntry._(
     E value, {
@@ -14,6 +15,7 @@ class LinkedListEntry<E> {
   LinkedListEntry<E>? _next;
 }
 
+@Deprecated("Use [Queue]")
 class _LinkedListIterator<E> implements Iterator<E> {
   _LinkedListIterator(this.node);
 
@@ -34,6 +36,7 @@ class _LinkedListIterator<E> implements Iterator<E> {
   }
 }
 
+@Deprecated("Use [Queue]")
 class LinkedList<E> with IterableMixin<E> implements Iterable<E> {
   LinkedList();
 
