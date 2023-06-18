@@ -115,7 +115,7 @@ class _EnumSetIterator<T> implements Iterator<T> {
     if (source.contains(value)) {
       return value;
     }
-    throw IndexError(_index, source);
+    throw IndexError.withLength(_index, source.length);
   }
 
   @override

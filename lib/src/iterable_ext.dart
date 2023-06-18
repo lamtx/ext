@@ -19,16 +19,7 @@ extension IterableExt<E> on Iterable<E> {
 
   int count([bool Function(E e)? predicate]) {
     if (predicate == null) {
-      if (this is List) {
-        return length;
-      } else {
-        var count = 0;
-        final iterator = this.iterator;
-        while (iterator.moveNext()) {
-          count += 1;
-        }
-        return count;
-      }
+      return length;
     } else {
       var count = 0;
       for (final e in this) {
@@ -177,11 +168,25 @@ extension IterableExt<E> on Iterable<E> {
     return buffer.toString();
   }
 
-  Map<R, List<E>> groupBy<R>(R Function(E e) key) {
-    final map = <R, List<E>>{};
+  Map<K, List<E>> groupBy<K, V>(
+    K Function(E e) keySelector,
+  ) {
+    final map = <K, List<E>>{};
     for (final element in this) {
-      final list = map.putIfAbsent(key(element), () => []);
+      final list = map.putIfAbsent(keySelector(element), () => <E>[]);
       list.add(element);
+    }
+    return map;
+  }
+
+  Map<K, List<V>> groupTransformBy<K, V>(
+    K Function(E e) keySelector,
+    V Function(E e) valueTransform,
+  ) {
+    final map = <K, List<V>>{};
+    for (final element in this) {
+      final list = map.putIfAbsent(keySelector(element), () => <V>[]);
+      list.add(valueTransform(element));
     }
     return map;
   }
