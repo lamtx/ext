@@ -168,7 +168,7 @@ extension IterableExt<E> on Iterable<E> {
     return buffer.toString();
   }
 
-  Map<K, List<E>> groupBy<K, V>(
+  Map<K, List<E>> groupBy<K>(
     K Function(E e) keySelector,
   ) {
     final map = <K, List<E>>{};
