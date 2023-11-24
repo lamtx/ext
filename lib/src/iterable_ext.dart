@@ -44,33 +44,6 @@ extension IterableExt<E> on Iterable<E> {
     return list;
   }
 
-  E? firstOrNull([bool Function(E e)? predicate]) {
-    if (predicate == null) {
-      return isEmpty ? null : first;
-    }
-    for (final e in this) {
-      if (predicate(e)) {
-        return e;
-      }
-    }
-    return null;
-  }
-
-  E? lastOrNull([bool Function(E e)? predicate]) {
-    if (predicate == null) {
-      return isEmpty ? null : last;
-    }
-    late E result;
-    var foundMatching = false;
-    for (final e in this) {
-      if (predicate(e)) {
-        result = e;
-        foundMatching = true;
-      }
-    }
-    return foundMatching ? result : null;
-  }
-
   Map<K, V> associate<K, V>((K, V) Function(E e) transform) {
     final result = <K, V>{};
     for (final e in this) {
@@ -209,13 +182,5 @@ extension IterableExt<E> on Iterable<E> {
 }
 
 extension NonnullIterableExt<T extends Object> on Iterable<T?> {
-  List<T> filterNotNull() {
-    final result = <T>[];
-    for (final e in this) {
-      if (e != null) {
-        result.add(e);
-      }
-    }
-    return result;
-  }
+  List<T> filterNotNull() => nonNulls.toList();
 }
