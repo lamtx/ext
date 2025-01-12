@@ -134,8 +134,9 @@ extension IterableExt<E> on Iterable<E> {
     } else {
       buffer.write(transform(iterator.current));
       while (iterator.moveNext()) {
-        buffer.write(separator);
-        buffer.write(transform(iterator.current));
+        buffer
+          ..write(separator)
+          ..write(transform(iterator.current));
       }
     }
     return buffer.toString();
@@ -146,8 +147,7 @@ extension IterableExt<E> on Iterable<E> {
   ) {
     final map = <K, List<E>>{};
     for (final element in this) {
-      final list = map.putIfAbsent(keySelector(element), () => <E>[]);
-      list.add(element);
+      map.putIfAbsent(keySelector(element), () => <E>[]).add(element);
     }
     return map;
   }
@@ -158,8 +158,9 @@ extension IterableExt<E> on Iterable<E> {
   ) {
     final map = <K, List<V>>{};
     for (final element in this) {
-      final list = map.putIfAbsent(keySelector(element), () => <V>[]);
-      list.add(valueTransform(element));
+      map
+          .putIfAbsent(keySelector(element), () => <V>[])
+          .add(valueTransform(element));
     }
     return map;
   }
