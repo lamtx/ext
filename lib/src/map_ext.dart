@@ -1,8 +1,8 @@
 extension MapExt<K, V> on Map<K, V> {
-  Map<K, V2> mapValues<V2>(V2 Function(V) convert) {
+  Map<K, V2> mapValues<V2>(V2 Function(MapEntry<K, V>) convert) {
     final result = <K, V2>{};
-    for (final key in keys) {
-      result[key] = convert(this[key] as V);
+    for (final entry in entries) {
+      result[entry.key] = convert(entry);
     }
     return result;
   }
