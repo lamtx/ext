@@ -145,7 +145,7 @@ extension IterableExt<E> on Iterable<E> {
         }
         buffer
           ..write(lastSeparator)
-          ..write(last);
+          ..write(transform(last));
       }
     }
     return buffer.toString();
