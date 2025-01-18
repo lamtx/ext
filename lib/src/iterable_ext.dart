@@ -118,25 +118,34 @@ extension IterableExt<E> on Iterable<E> {
       value ? where(predicate) : this;
 
   String joinToString([
-    String? separator = ", ",
+    String separator = ", ",
     String Function(E e)? transform,
+    String? last,
   ]) {
     final iterator = this.iterator;
+    last ??= separator;
     transform ??= (e) => e.toString();
     if (!iterator.moveNext()) {
       return "";
     }
     final buffer = StringBuffer();
-    if (separator == null || separator == "") {
+    if (separator.isEmpty) {
       do {
         buffer.write(transform(iterator.current));
       } while (iterator.moveNext());
     } else {
       buffer.write(transform(iterator.current));
-      while (iterator.moveNext()) {
+      if (iterator.moveNext()) {
+        var e = iterator.current;
+        while (iterator.moveNext()) {
+          buffer
+            ..write(separator)
+            ..write(transform(e));
+          e = iterator.current;
+        }
         buffer
-          ..write(separator)
-          ..write(transform(iterator.current));
+          ..write(last)
+          ..write(e);
       }
     }
     return buffer.toString();
