@@ -120,10 +120,10 @@ extension IterableExt<E> on Iterable<E> {
   String joinToString([
     String separator = ", ",
     String Function(E e)? transform,
-    String? last,
+    String? lastSeparator,
   ]) {
     final iterator = this.iterator;
-    last ??= separator;
+    lastSeparator ??= separator;
     transform ??= (e) => e.toString();
     if (!iterator.moveNext()) {
       return "";
@@ -136,16 +136,16 @@ extension IterableExt<E> on Iterable<E> {
     } else {
       buffer.write(transform(iterator.current));
       if (iterator.moveNext()) {
-        var e = iterator.current;
+        var last = iterator.current;
         while (iterator.moveNext()) {
           buffer
             ..write(separator)
-            ..write(transform(e));
-          e = iterator.current;
+            ..write(transform(last));
+          last = iterator.current;
         }
         buffer
-          ..write(last)
-          ..write(e);
+          ..write(lastSeparator)
+          ..write(last);
       }
     }
     return buffer.toString();
