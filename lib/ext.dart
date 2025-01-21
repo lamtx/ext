@@ -7,6 +7,7 @@ export 'src/file_system_entity_ext.dart';
 export 'src/int_ext.dart';
 export 'src/int_size.dart';
 export 'src/iterable_ext.dart';
+export 'src/json.dart';
 export 'src/lazy.dart';
 export 'src/list_ext.dart';
 export 'src/map_ext.dart';
