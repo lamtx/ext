@@ -46,6 +46,16 @@ extension SerializableJsonObject on ToJson {
   }
 }
 
+extension SerializableJsonListObject on List<ToJson?> {
+  List<Object?> toJson() {
+    return map((e) => e?.toJson()).toList(growable: false);
+  }
+
+  String serializeAsJson() {
+    return json.encode(toJson());
+  }
+}
+
 String _toUrlEncoded(Map<String, Object?> params) {
   final s = StringBuffer();
   params.forEach((key, value) {
