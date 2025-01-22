@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'predicate.dart';
 
 extension NullableListExt<T> on List<T>? {
@@ -74,6 +76,8 @@ extension ListExt<T> on List<T> {
       swap(i, length - i - 1);
     }
   }
+
+  List<T> get reveredList => _ReversedList(this);
 }
 
 class _IntRange extends Iterable<int> {
@@ -100,5 +104,25 @@ class _IntRangeIterator implements Iterator<int> {
   bool moveNext() {
     _value += 1;
     return _value <= end;
+  }
+}
+
+final class _ReversedList<E> with ListBase<E> implements List<E> {
+  _ReversedList(this._base);
+
+  final List<E> _base;
+
+  @override
+  int get length => _base.length;
+
+  @override
+  set length(int value) => _base.length = value;
+
+  @override
+  E operator [](int index) => _base[_base.length - index - 1];
+
+  @override
+  void operator []=(int index, E value) {
+    _base[_base.length - index - 1] = value;
   }
 }
