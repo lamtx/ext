@@ -77,7 +77,7 @@ extension ListExt<T> on List<T> {
     }
   }
 
-  List<T> get reveredList => _ReversedList(this);
+  List<T> get reversedList => _ReversedList(this);
 }
 
 class _IntRange extends Iterable<int> {
