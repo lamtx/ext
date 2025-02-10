@@ -12,14 +12,6 @@ extension NullableListExt<T> on List<T>? {
 }
 
 extension ListExt<T> on List<T> {
-  void sortBy<R extends Comparable<R>>(R Function(T e) key) {
-    sort((a, b) => key(a).compareTo(key(b)));
-  }
-
-  void sortDescBy<R extends Comparable<R>>(R Function(T e) key) {
-    sort((a, b) => -key(a).compareTo(key(b)));
-  }
-
   Iterable<int> get indices => _IntRange(0, length - 1);
 
   bool updateFirst(Predicate<T> where, T Function(T e) transform) {
