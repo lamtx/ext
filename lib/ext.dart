@@ -5,6 +5,8 @@ export 'src/date_time_ext.dart';
 export 'src/duration_ext.dart';
 export 'src/file_system_entity_ext.dart';
 export 'src/int_ext.dart';
+export 'src/int_offset.dart';
+export 'src/int_rect.dart';
 export 'src/int_size.dart';
 export 'src/iterable_ext.dart';
 export 'src/json.dart';
