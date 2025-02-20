@@ -1,4 +1,4 @@
-import 'json.dart';
+import '../ext.dart';
 
 final class IntOffset implements ToJson {
   const IntOffset(this.x, this.y);
@@ -18,6 +18,16 @@ final class IntOffset implements ToJson {
 
   @override
   int get hashCode => x.hashCode ^ y.hashCode;
+
+  IntOffset operator +(IntOffset other) => IntOffset(x + other.x, y + other.y);
+
+  IntOffset operator -(IntOffset other) => IntOffset(x - other.x, y - other.y);
+
+  IntOffset operator *(int factor) => IntOffset(x * factor, y * factor);
+
+  IntOffset operator ~/(int factor) => IntOffset(x ~/ factor, y ~/ factor);
+
+  IntRect operator &(IntSize size) => IntRect(x, y, size.width, size.height);
 
   @override
   String toString() => 'Offset($x,$y)';

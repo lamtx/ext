@@ -1,11 +1,9 @@
-import 'json.dart';
+import '../ext.dart';
 
 final class IntRect implements ToJson {
   IntRect(this.x, this.y, this.width, this.height)
-      : assert(x >= 0),
-        assert(y >= 0),
-        assert(width > 0),
-        assert(height > 0);
+      : assert(width >= 0),
+        assert(height >= 0);
 
   factory IntRect.fromJson(Map<String, Object?> json) => IntRect(
         (json['x']! as num).toInt(),
@@ -19,15 +17,29 @@ final class IntRect implements ToJson {
   final int width;
   final int height;
 
-  int get right => x + width - 1;
+  /// Exclusive right
+  int get right => x + width;
 
-  int get bottom => y + height - 1;
+  /// Exclusive bottom
+  int get bottom => y + height;
 
   double get centerX => x + width / 2;
 
   double get centerY => y + height / 2;
 
   double get avgRadius => (width + height) / 4;
+
+  IntSize get size => IntSize(width, height);
+
+  IntOffset get offset => IntOffset(x, y);
+
+  int get area => width * height;
+
+  IntRect operator +(IntOffset offset) =>
+      IntRect(x + offset.x, y + offset.y, width, height);
+
+  IntRect operator -(IntOffset offset) =>
+      IntRect(x - offset.x, y - offset.y, width, height);
 
   bool contains(IntRect other, {bool inclusive = false}) {
     return inclusive
