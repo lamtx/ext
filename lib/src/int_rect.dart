@@ -35,6 +35,8 @@ final class IntRect implements ToJson {
 
   int get area => width * height;
 
+  bool get isEmpty => width == 0 || height == 0;
+
   IntRect operator +(IntOffset offset) =>
       IntRect(x + offset.x, y + offset.y, width, height);
 
