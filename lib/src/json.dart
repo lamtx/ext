@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-typedef JsonObjectFactory<T> = T Function(Map<String, Object>);
+typedef JsonObjectFactory<T> = T Function(Map<String, Object?>);
 
 abstract interface class ToJson {
   Object? toJson();
