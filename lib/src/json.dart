@@ -10,7 +10,13 @@ extension JsonToObject<T> on JsonObjectFactory<T> {
   T parseObject(String s) {
     final dynamic map = json.decode(s);
     if (map is Map) {
-      return this(map.cast());
+      try {
+        return this(map.cast());
+        // json throw error instead of exception
+        // ignore: avoid_catches_without_on_clauses
+      } catch (e) {
+        throw Exception("Parse json failed: $e");
+      }
     } else {
       throw Exception("The provided json is not a map.");
     }
@@ -19,10 +25,16 @@ extension JsonToObject<T> on JsonObjectFactory<T> {
   List<T> parseList(String s) {
     final dynamic array = json.decode(s);
     if (array is List) {
-      return array
-          .whereType<Map<dynamic, dynamic>>()
-          .map((e) => this(e.cast()))
-          .toList();
+      try {
+        return array
+            .whereType<Map<dynamic, dynamic>>()
+            .map((e) => this(e.cast()))
+            .toList();
+        // json throw error instead of exception
+        // ignore: avoid_catches_without_on_clauses
+      } catch (e) {
+        throw Exception("Parse json failed: $e");
+      }
     } else {
       throw Exception("The provided json is not a list.");
     }
